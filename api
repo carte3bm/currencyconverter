@@ -1,7 +1,5 @@
 api web address:    http://currency-api.appspot.com/api/USD/AUD.json?key=5964e7afe142a6594c32496470ec71a9c801e5eb
 
-list of supported countries:    http://currency-api.appspot.com/documentation#supported-currencies
-
 all-in-one page (use php notation):   http://currency-api.appspot.com/documentation
 
 web address of api-key (in case I need to use it again):    http://currency-api.appspot.com/dashboard
