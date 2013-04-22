@@ -1,5 +1,4 @@
 
-
  <?php
 $url = "http://currency-api.appspot.com/api/$_GET[field1].json?key=5964e7afe142a6594c32496470ec71a9c801e5eb";
 
