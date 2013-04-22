@@ -1,4 +1,5 @@
 api web address:    http://currency-api.appspot.com/api/USD/AUD.json?key=5964e7afe142a6594c32496470ec71a9c801e5eb
+      *for amount add &amount= and use a numeric decimal value after the = sign
 
 all-in-one page (use php notation):   http://currency-api.appspot.com/documentation
 
