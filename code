@@ -1,0 +1,75 @@
+<html>
+<head>
+</head>
+<body>
+<input id = "amountbox" type="text">
+                     <select name="first" id="first" >
+<option value = "AUD">Australian Dollar</option>
+<option value = "CAD">Canadian Dollar</option>
+<option value = "CHF">Swiss France</option>
+<option value = "DKK">Danish Krone</option>
+<option value = "EUR">Euro</option>
+<option value = "GBP">Pound Sterling</option>
+<option value = "HKD">Hong Kong Dollar</option>
+<option value = "JPY">Japanese Yen</option>
+<option value = "MXN">Mexican Peso</option>
+<option value = "NZD">New Zealand Dollar</option>
+<option value = "PHP">Philippine Peso</option>
+<option value = "SEK">Swedish Krona</option>
+<option value = "SGD">Singapore Dollar</option>
+<option value = "THB">Thailand Baht</option>
+<option value = "USD">United States Dollar</option>
+<option value = "ZAR">South African Rand</option>
+                                        </select>
+  				 <select name="second" id="second" >
+<option value = "AUD">Australian Dollar</option>
+<option value = "CAD">Canadian Dollar</option>
+<option value = "CHF">Swiss France</option>
+<option value = "DKK">Danish Krone</option>
+<option value = "EUR">Euro</option>
+<option value = "GBP">Pound Sterling</option>
+<option value = "HKD">Hong Kong Dollar</option>
+<option value = "JPY">Japanese Yen</option>
+<option value = "MXN">Mexican Peso</option>
+<option value = "NZD">New Zealand Dollar</option>
+<option value = "PHP">Philippine Peso</option>
+<option value = "SEK">Swedish Krona</option>
+<option value = "SGD">Singapore Dollar</option>
+<option value = "THB">Thailand Baht</option>
+<option value = "USD">United States Dollar</option>
+<option value = "ZAR">South African Rand</option>
+                                        </select>
+<form> 
+    <input onclick="GetShoppingList();"type="button" value="Fetch List"/> 
+    <p id="divShoppingList"></p> 
+</form> 
+<script>
+
+
+function GetShoppingList() 
+{ 
+    // Create an instance of the HTTP request object 
+    var xmlHttp = new XMLHttpRequest(); 
+	var amount = document.getElementById("amountbox");
+	var e = document.getElementById("first");
+	var country1 = e.options[e.selectedIndex].value;
+	e = document.getElementById("second");
+	var country2 = e.options[e.selectedIndex].value;
+	var countries = country1 + "/" + country2;
+    // Specify HTTP GET by default and supply the relative url 
+
+    xmlHttp.open("GET", "http://localhost/convert.php?field1=" + countries, false); 
+     
+    // Start a synchronous AJAX request and wait 
+    // for the response 
+    xmlHttp.send(null); 
+
+    var targetNode = document.getElementById("divShoppingList"); 
+ 
+    // Use the HTML returned from server to create list 
+    targetNode.innerHTML = xmlHttp.responseText; 
+}	
+</script>	
+ 
+</body>
+</html>
