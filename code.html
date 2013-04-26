@@ -1,56 +1,144 @@
 <html>
 <head>
+<link rel="stylesheet" type="text/css" href="converter.css">
+ <link rel="stylesheet" href="jquery-jvectormap-1.1.1.css" type="text/css" media="screen"/>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" ></script>
+  <script src="jquery-jvectormap-1.2.2.min.js"></script>
+  <script src="jquery-jvectormap-world-mill-en.js"></script>
+
 </head>
 <body>
-<input id = "amountbox" type="text">
-                     <select name="first" id="first" >
+<div id = "maindiv">
+<input id = "amountbox"  type="text" maxlength="4" value = "1">
+<div class="styled-select">
+                     <select name="first" onchange = "changetext()" id="first" class="a" >
+<option disabled selected value = "">Select Country</option>
 <option value = "AUD">Australian Dollar</option>
 <option value = "CAD">Canadian Dollar</option>
 <option value = "CHF">Swiss France</option>
 <option value = "DKK">Danish Krone</option>
 <option value = "EUR">Euro</option>
 <option value = "GBP">Pound Sterling</option>
-<option value = "HKD">Hong Kong Dollar</option>
 <option value = "JPY">Japanese Yen</option>
 <option value = "MXN">Mexican Peso</option>
 <option value = "NZD">New Zealand Dollar</option>
 <option value = "PHP">Philippine Peso</option>
 <option value = "SEK">Swedish Krona</option>
-<option value = "SGD">Singapore Dollar</option>
 <option value = "THB">Thailand Baht</option>
 <option value = "USD">United States Dollar</option>
 <option value = "ZAR">South African Rand</option>
                                         </select>
-  				 <select name="second" id="second" >
+																				</div>
+															<img id = 'is' src="is.png">
+<div class="styled-select2">
+  				 <select name="second" id="second" onchange = "allowconvert()" disabled >
+				 <option disabled selected value = "">Select Country</option>
 <option value = "AUD">Australian Dollar</option>
 <option value = "CAD">Canadian Dollar</option>
 <option value = "CHF">Swiss France</option>
 <option value = "DKK">Danish Krone</option>
 <option value = "EUR">Euro</option>
 <option value = "GBP">Pound Sterling</option>
-<option value = "HKD">Hong Kong Dollar</option>
 <option value = "JPY">Japanese Yen</option>
 <option value = "MXN">Mexican Peso</option>
 <option value = "NZD">New Zealand Dollar</option>
 <option value = "PHP">Philippine Peso</option>
 <option value = "SEK">Swedish Krona</option>
-<option value = "SGD">Singapore Dollar</option>
 <option value = "THB">Thailand Baht</option>
 <option value = "USD">United States Dollar</option>
 <option value = "ZAR">South African Rand</option>
                                         </select>
+</div>
+
 <form> 
-    <input onclick="GetShoppingList();"type="button" value="Fetch List"/> 
+   
+<input  type="text" id = "result" readonly value = ""></input>
     <p id="divShoppingList"></p> 
 </form> 
+</div>
+  
+  <div id="world-map" style="width: 60%; height: 50%"></div>
+<div id ="firsttext"><input id = "button" onclick="GetShoppingList();"type="button" src = "button.png"/><img id = 'text' src="first.png"></div>
+
+
 <script>
+var currentmenu = "first";
+var firstcode = "";
 
+var countryarray =
+[	["ES", "EUR"],
+	["PT", "EUR"],
+	["FR", "EUR"],
+	["IE", "EUR"],
+	["IT", "EUR"],
+	["SI", "EUR"],
+	["SK", "EUR"],
+	["AT", "EUR"],
+	["LU", "EUR"],
+	["BE", "EUR"],
+	["NL", "EUR"],
+	["DE", "EUR"],
+	["GR", "EUR"],
+	["CY", "EUR"],
+	["FI", "EUR"],
+	["EE", "EUR"],
+	["GB", "GBP"],
+	["US", "USD"],
+	["SV", "USD"],
+	["PA", "USD"],
+	["EC", "USD"],
+	["CA", "CAD"],
+	["MX", "MXN"],
+	["ZA", "ZAR"],
+	["JP", "JPY"],
+	["AU", "AUD"],
+	["CH", "CHF"],
+	["DK", "DKK"],
+	["GL", "DKK"],
+	["NZ", "NZD"],
+	["PH", "PHP"],
+	["SE", "SEK"],	
+	["TH", "THB"],
+	
+]
+function changetext()
+{
+	document.getElementById("text").src = "second.png";
+	document.getElementById("firsttext").style.width = "788px";
+	document.getElementById("second").disabled = false;
+		document.getElementById("first").disabled = true;
+	for (var i = 0; i < countryarray.length ; i++)
+	{
+		
+		if (countryarray[i][1] == document.getElementById("first").value)
+		{	
+			map.setSelectedRegions(countryarray[i][0]);
+		}
+	}
+		
+}
+function allowconvert()
+{
 
+	document.getElementById("firsttext").style.visibility = "hidden";
+	document.getElementById("button").style.visibility = "visible";
+		document.getElementById("firsttext").style.width = "291px";
+				document.getElementById("second").disabled = true;
+			for (var i = 0; i < countryarray.length ; i++)
+	{
+	
+		if (countryarray[i][1] == document.getElementById("second").value)
+		{	
+
+			map.setSelectedRegions(countryarray[i][0]);
+		}
+	}
+}
 function GetShoppingList() 
 { 
     // Create an instance of the HTTP request object 
     var xmlHttp = new XMLHttpRequest(); 
-	var amount = document.getElementById("amountbox");
+	var amount = document.getElementById("amountbox").value;
 	var e = document.getElementById("first");
 	var country1 = e.options[e.selectedIndex].value;
 	e = document.getElementById("second");
@@ -58,7 +146,7 @@ function GetShoppingList()
 	var countries = country1 + "/" + country2;
     // Specify HTTP GET by default and supply the relative url 
 
-    xmlHttp.open("GET", "http://localhost/convert.php?field1=" + countries, false); 
+    xmlHttp.open("GET", "http://localhost/CurrencyConverter/convert.php?field1=" + countries +"&field2=" + amount, false); 
      
     // Start a synchronous AJAX request and wait 
     // for the response 
@@ -68,7 +156,87 @@ function GetShoppingList()
  
     // Use the HTML returned from server to create list 
     targetNode.innerHTML = xmlHttp.responseText; 
+		document.getElementById("second").disabled = true;
+		map.clearSelectedRegions();
+
+	currentmenu = "first";
+	firstcode = "";
+	
+	document.getElementById("firsttext").style.width = "688px";
+		document.getElementById("text").src = "first.png";
+			document.getElementById("firsttext").style.visibility = "visible";
+				document.getElementById("button").style.visibility = "hidden";
+					document.getElementById("first").disabled = false;
+
 }	
+
+
+map = new jvm.WorldMap({
+    container: $('#world-map'),
+    map: 'world_mill_en',
+    regionsSelectable: true,
+	    regionsSelectableOne: true,
+    markersSelectable: true,
+  
+    regionStyle: {
+      initial: {
+        fill: '#FFFFFF'
+      },
+      selected: {
+        fill: '#FF0000'
+      }
+    },
+ 
+    onRegionSelected:function(event, code){
+
+	if (code != firstcode )
+
+{
+	for (var i = 0; i < countryarray.length ; i++)
+	{
+		
+		if (countryarray[i][0] == code)
+		{	
+
+	
+			var list = document.getElementById(currentmenu);
+		
+			for (var j = 0; j < list.options.length; j++)
+			{	
+			
+				 if ( list.options[j].value ==  countryarray[i][1])
+				 {
+
+					list.options[j].selected = true;
+					    if (firstcode == "")
+						{
+							firstcode = code;
+						}
+						if (currentmenu == "first")
+						{
+							currentmenu = "second"; 
+							changetext();
+						}
+						else
+						{
+						
+							allowconvert();
+						}
+			
+				 }
+											
+			}	
+
+		}
+		return;
+
+	}
+	
+}
+
+    },
+
+  });
 </script>	
  
 </body>
