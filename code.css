@@ -1,0 +1,169 @@
+body
+{
+background-image: url('bg.png');
+width: 100%;
+}
+
+#maindiv
+{
+  position: relative;
+	width: 60%;
+	top: 15%;
+	height: 13%;
+	margin-left: auto;
+	margin-right: auto;
+
+}
+
+#button
+{
+background-image: url('button.png');
+background-repeat: no-repeat;
+background-color: transparent;
+width: 291px;
+height: 105px;
+border: none;
+visibility: hidden;
+position:absolute;
+top: 70%;
+z-index: 84;
+margin-left: auto;
+margin-right: auto;
+
+}
+#amountbox
+{
+position: absolute;
+width: 15%;
+height: 100%;
+font-family: verdana;
+
+font-size:36px;
+background: #505050;
+border: 2px solid red;
+text-align: center;
+
+}
+#is
+{
+position: absolute;
+left: 38%;
+height: 100%;
+}
+#result
+{    resize: none; 
+left: 50%;
+position: absolute;
+width: 27%;
+height: 100%;
+font-family: verdana;
+font-size: 36px;
+background: #505050;
+border: 2px solid red;
+text-align: center;
+}
+#world-map
+{
+	position:absolute;
+	left: 20%;
+	top: 30%;
+	border: 10px solid black;
+}
+#firsttext
+{
+width: 688px;
+position:relative;
+top: 70%;
+z-index: 84;
+margin-left: auto;
+margin-right: auto;
+
+}
+#text
+{
+position:absolute;
+top: 75%;
+z-index: 84;
+margin-left: auto;
+margin-right: auto;
+}
+#frame
+{
+position: absolute;
+left: 20%;
+top:30%;
+width: 60%;
+height: 50%;
+}
+#mydiv
+{
+position: absolute;
+left: 50%;
+}
+
+#first
+{
+height: 100%;
+width: 100%;
+}
+#second
+{
+height: 100%;
+width: 100%;
+}
+   .styled-select {
+   
+   position: absolute;
+   left: 17%;
+   width: 20%;
+   height: 100%;
+   overflow: hidden;
+   background: url(new_arrow.png) no-repeat right #ddd;
+   border: 1px solid #ccc;
+   z-index: 10;
+   }
+   .styled-select select {
+   left: 17%;
+   background: transparent;
+   width: 20%;
+   padding: 5px;
+   font-size: 16px;
+   line-height: 1;
+   border: 0;
+   border-radius: 0;
+   height: 100%;
+font-family: verdana;
+font: 15px solid;
+
+   -webkit-appearance: none;
+   }
+    .styled-select2 {
+   position: absolute;
+   left: 80%;
+   width: 20%;
+   height: 100%;
+   overflow: hidden;
+   background: url(new_arrow.png) no-repeat right #ddd;
+   border: 1px solid #ccc;
+   z-index: 10;
+   }
+   .styled-select2 select {
+   left: 80%;
+   background: transparent;
+   width: 20%;
+   height: 100%;
+   padding: 5px;
+   font-size: 16px;
+   line-height: 1;
+   border: 0;
+   border-radius: 0;
+   height: 100%;
+font-family: verdana;
+font: 15px solid;
+
+   -webkit-appearance: none;
+   }
+
+   
+}
+
